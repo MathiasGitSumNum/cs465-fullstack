@@ -8,12 +8,12 @@ import {Md5} from 'ts-md5';
 import { Observable } from 'rxjs';
 
 @Component({
-selector: 'app-login',
-templateUrl: './login.component.html',
-styleUrls: ['./login.component.css'],
+selector: 'app-register',
+templateUrl: './register.component.html',
+styleUrls: ['./register.component.css'],
 imports: [FormsModule, CommonModule]
 })
-export class LoginComponent implements OnInit {
+export class RegisterComponent implements OnInit {
 public formError: string = '';
 public credentials = {
  name: '',
@@ -25,22 +25,22 @@ constructor(
  private authenticationService: AuthenticationService
 ) { }
 ngOnInit() {}
-public onLoginSubmit(): void {
+public onRegisterSubmit(): void {
  this.formError = '';
  if (!this.credentials.email || !this.credentials.password) {
  this.formError = 'All fields are required, please try again';
  } else {
- this.doLogin();
+ this.doRegister();
  }
  }
-private doLogin(): void {
+private doRegister(): void {
     let email = base64HashString(this.credentials.email);
     let password = md5HashString(this.credentials.password);
     password = base64HashString(password);
     let formData = new FormData();
     formData.append('email', email);
     formData.append('password', password);
-    this.authenticationService.login(formData).subscribe(res => {
+    this.authenticationService.register(formData).subscribe(res => {
         if (res.statusCode == 200){
             this.router.navigateByUrl('#');
         }

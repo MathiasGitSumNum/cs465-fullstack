@@ -3,13 +3,15 @@ import { BROWSER_STORAGE } from '../storage';
 import { User } from '../models/user';
 import { AuthResponse } from '../models/authresponse';
 import { TripDataService } from '../services/trip-data.service';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class AuthenticationService {
-  constructor(
+  constructor(private http: HttpClient,
     @Inject(BROWSER_STORAGE) private storage: Storage,
     private tripDataService: TripDataService
   ) {}
@@ -20,15 +22,19 @@ export class AuthenticationService {
   public saveToken(token: string): void {
     this.storage.setItem('travlr-token', token);
   }
-  public login(user: User): Promise<any> {
-    return this.tripDataService.login(user)
-    .then((authResp: AuthResponse) =>
-      this.saveToken(authResp.token));
+  public login(user: FormData): Observable<any> {
+    const url: string = 'http://localhost:8080/api/auth/login';
+    console.log(url);
+    console.log(user.get("email"));
+    return this.http
+    .post<any>(url, user , {headers: {skip: 'true'}}); 
   }
-  public register(user: User): Promise<any> {
-    return this.tripDataService.register(user)
-    .then((authResp: AuthResponse) =>
-      this.saveToken(authResp.token));
+  public register(user: FormData): Observable<any> {
+    const url: string = 'http://localhost:8080/api/auth/register';
+    console.log(url);
+    console.log(user.get("email"));
+    return this.http
+    .post<any>(url, user , {headers: {skip: 'true'}}); 
   }
   public logout(): void {
     this.storage.removeItem('travlr-token');
