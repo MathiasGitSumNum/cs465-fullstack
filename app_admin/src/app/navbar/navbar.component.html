@@ -1,23 +1,29 @@
-<nav class="navbar navbar-expand navbar-light bg-light">
-    <a class="navbar-brand" href="#"><img
-   src="/assets/images/logo.png"></a>
-    <button class="navbar-toggler" type="button" datatoggle="collapse" data-target="#navbarNavAltMarkup" ariacontrols="navbarNavAltMarkup" aria-expanded="false" arialabel="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav">
-    <a class="nav-item nav-link active" routerLink="list-trips" *ngIf="isLoggedIn()">Trips</a>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#"><img src="/assets/images/logo.png"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-item nav-link active" routerLink="list-trips" *ngIf="isLoggedIn()">Trips</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-item nav-link active" (click)="removeRegistration()" routerLink="login" *ngIf="!isLoggedIn()">Log In</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-item nav-link active" routerLink="register" *ngIf="!isLoggedIn()">Register</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-item nav-link active" (click)="onLogout()" href = "#" *ngIf="isLoggedIn()">Log Out</a>
+          </li>
+        </ul>
+      </div>
     </div>
-    </div>
-    <div class="navbar-end ">
-    <a class="navbar-item" routerLink="login" *ngIf="!isLoggedIn()">
-    <span class="has-icon-left">Log In</span>
-    </a>
-    <a class="navbar-item" routerLink="register" *ngIf="!isLoggedIn()">
-    <span class="has-icon-left">Register</span>
-    </a>
-    <a class="navbar-item" (click)="onLogout()" *ngIf="isLoggedIn()">
-    <span class="has-icon-left ">Log Out</span>
-    </a>
-    </div>
-   </nav>
+  </nav>

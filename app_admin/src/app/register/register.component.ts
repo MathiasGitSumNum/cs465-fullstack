@@ -42,8 +42,8 @@ private doRegister(): void {
     formData.append('password', password);
     this.authenticationService.register(formData).subscribe(res => {
         if (res.statusCode == 200){
-            //sessionStorage.setItem("isLoggedIn", "true");
-            this.router.navigateByUrl('#');
+            sessionStorage.setItem("registered", "true");
+            this.router.navigate(['login']);
         }
     });
 

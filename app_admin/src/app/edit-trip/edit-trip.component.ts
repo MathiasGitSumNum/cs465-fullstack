@@ -28,6 +28,12 @@ export class EditTripComponent {
   ngOnInit() : void {
     // Retrieve stashed trip ID
     let tripCode = localStorage.getItem("tripCode");
+    let tripName = localStorage.getItem("tripName");
+    let tripLength = localStorage.getItem("tripLength");
+    let tripResort = localStorage.getItem("tripResort");
+    let tripPerPerson = localStorage.getItem("tripPerPerson");
+    let tripImage = localStorage.getItem("tripImage");
+    let tripDescription = localStorage.getItem("tripDescription");
     if (!tripCode) {
       alert("Something wrong, couldn’t find where I stashed tripCode!");
       this.router.navigate(['']);
@@ -35,16 +41,21 @@ export class EditTripComponent {
     }
     console.log('EditTripComponent::ngOnInit');
     console.log('tripcode:' + tripCode);
+    let dateString = localStorage.getItem("tripStart");
+    let date: Date = new Date();
+    if (dateString){
+      let date: Date = new Date(dateString);
+    }
     this.editForm = this.formBuilder.group({
       _id: [],
       code: [tripCode, Validators.required],
-      name: ['', Validators.required],
-      length: ['', Validators.required],
-      start: ['', Validators.required],
-      resort: ['', Validators.required],
-      perPerson: ['', Validators.required],
-      image: ['', Validators.required],
-      description: ['', Validators.required]
+      name: [tripName, Validators.required],
+      length: [tripLength, Validators.required],
+      start: [date, Validators.required],
+      resort: [tripResort, Validators.required],
+      perPerson: [tripPerPerson, Validators.required],
+      image: [tripImage, Validators.required],
+      description: [tripDescription, Validators.required]
     })
     this.tripDataService.getTrip(tripCode)
     .subscribe({
@@ -75,7 +86,7 @@ export class EditTripComponent {
           .subscribe({
             next: (value: any) => {
               console.log(value);
-              this.router.navigate(['']);
+              this.router.navigate(['list-trips']);
             },
             error: (error: any) => {
               console.log('Error: ' + error);

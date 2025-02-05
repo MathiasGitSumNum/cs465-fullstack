@@ -5,7 +5,6 @@ import { User } from '../models/user';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import {Md5} from 'ts-md5';
-import { Observable } from 'rxjs';
 
 @Component({
 selector: 'app-login',
@@ -43,12 +42,30 @@ private doLogin(): void {
     this.authenticationService.login(formData).subscribe(res => {
         if (res.statusCode == 200){
             sessionStorage.setItem("isLoggedIn", "true");
-            this.router.navigateByUrl('#');
+            this.router.navigate(['list-trips']);
         }
     });
 
  }
+
+ public isRegistered(): boolean {
+    if (sessionStorage.getItem("registered") == null){
+        sessionStorage.setItem("registered", "false");
+        return false;
+    }
+    if (sessionStorage.getItem("registered") == "false"){
+        return false;
+    }
+    return true;
+ }
+
+ public static removeRegistration(): any {
+    sessionStorage.setItem("registered", "false");
 }
+
+}
+
+window.onbeforeunload = () => LoginComponent.removeRegistration();
 
 function base64HashString(text: string) {
     return btoa(text);

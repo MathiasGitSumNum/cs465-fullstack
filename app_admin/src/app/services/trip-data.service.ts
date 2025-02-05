@@ -20,7 +20,7 @@ export class TripDataService {
   private tripUrl = '${this.apiBaseUrl}/trips';
 
   getTrips() : Observable<Trip[]> {
-    return this.http.get<Trip[]>(this.tripUrl);
+    return this.http.get<Trip[]>('http://localhost:3000/api/trips');
   }
 
   addTrip(formData: Trip) : Observable<Trip> {

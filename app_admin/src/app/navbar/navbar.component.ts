@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../services/authentication.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { Router } from 'express';
+
 @Component({
 selector: 'app-navbar',
 templateUrl: './navbar.component.html',
@@ -28,4 +28,9 @@ public onLogout(): void {
     sessionStorage.setItem("isLoggedIn", "false");
     location.reload();
  }
+
+ public removeRegistration(): any {
+    sessionStorage.setItem("registered", "false");
+}
+
 } 

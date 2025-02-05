@@ -16,6 +16,13 @@ export class HomeComponent implements OnInit {
   }
 
   public isLoggedIn(): boolean {
-    return this.authenticationService.isLoggedIn();
-  }
+    if (sessionStorage.getItem("isLoggedIn") == null){
+        sessionStorage.setItem("isLoggedIn", "false");
+        return false;
+    }
+    if (sessionStorage.getItem("isLoggedIn") == "false"){
+        return false;
+    }
+    return true;
+ }
 }

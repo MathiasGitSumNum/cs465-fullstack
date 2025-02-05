@@ -31,6 +31,20 @@ export class TripCardComponent implements OnInit {
   public editTrip(trip: Trip) {
     localStorage.removeItem('tripCode');
     localStorage.setItem('tripCode', trip.code);
+    localStorage.removeItem('tripName');
+    localStorage.setItem('tripName', trip.name);
+    localStorage.removeItem('tripLength');
+    localStorage.setItem('tripLength', trip.length);
+    localStorage.removeItem('tripStart');
+    localStorage.setItem('tripStart', trip.start.toString());
+    localStorage.removeItem('tripResort');
+    localStorage.setItem('tripResort', trip.resort);
+    localStorage.removeItem('tripPerPerson');
+    localStorage.setItem('tripPerPerson', trip.perPerson);
+    localStorage.removeItem('tripImage');
+    localStorage.setItem('tripImage', trip.image);
+    localStorage.removeItem('tripDescription');
+    localStorage.setItem('tripDescription', trip.description);
     this.router.navigate(['edit-trip']);
   }
 
