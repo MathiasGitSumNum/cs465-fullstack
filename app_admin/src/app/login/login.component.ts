@@ -42,6 +42,7 @@ private doLogin(): void {
     formData.append('password', password);
     this.authenticationService.login(formData).subscribe(res => {
         if (res.statusCode == 200){
+            sessionStorage.setItem("isLoggedIn", "true");
             this.router.navigateByUrl('#');
         }
     });

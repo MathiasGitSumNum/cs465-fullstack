@@ -6,7 +6,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const hbs = require('hbs');
-const passport = require('passport');
+//const passport = require('passport');
 
 require('./app_api/models/user');
 
@@ -18,7 +18,7 @@ var apiRouter = require('./app_api/routes/index');
 //Brings in the DB
 require('./app_api/models/db');
 
-require('./app_api/config/passport');
+//require('./app_api/config/passport');
 
 var app = express();
 
@@ -33,7 +33,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(passport.initialize());
+//app.use(passport.initialize());
 
 // Allow CORS
 app.use('/api', (req, res, next) =>{

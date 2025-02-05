@@ -24,7 +24,7 @@ export class TripDataService {
   }
 
   addTrip(formData: Trip) : Observable<Trip> {
-    return this.http.post<Trip>(this.tripUrl, formData);
+    return this.http.post<Trip>('http://localhost:3000/api/trips', formData);
   }
 
   getTrip(tripCode: string) : Observable<Trip[]> {

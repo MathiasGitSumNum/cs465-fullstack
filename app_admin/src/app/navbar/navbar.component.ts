@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../services/authentication.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { Router } from 'express';
 @Component({
 selector: 'app-navbar',
 templateUrl: './navbar.component.html',
@@ -14,9 +15,17 @@ constructor(
 ) { }
 ngOnInit() { }
 public isLoggedIn(): boolean {
- return this.authenticationService.isLoggedIn();
+    if (sessionStorage.getItem("isLoggedIn") == null){
+        sessionStorage.setItem("isLoggedIn", "false");
+        return false;
+    }
+    if (sessionStorage.getItem("isLoggedIn") == "false"){
+        return false;
+    }
+    return true;
  }
 public onLogout(): void {
- return this.authenticationService.logout();
+    sessionStorage.setItem("isLoggedIn", "false");
+    location.reload();
  }
 } 

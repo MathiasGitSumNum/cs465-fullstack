@@ -41,8 +41,8 @@ const tripsFindByCode = async(req, res) => {
 };
 
 const tripsAddTrip = async (req, res) => {
-    getUser(req, res,
-        (req, res) => {
+    //getUser(req, res,
+    //    (req, res) => {
             Trip
             .create({
                 code: req.body.code,
@@ -66,8 +66,8 @@ const tripsAddTrip = async (req, res) => {
                 }
             });
         }
-    );
-}
+    //);
+//}
 
 const tripsUpdateTrip = async (req, res) => {
     getUser(req, res,

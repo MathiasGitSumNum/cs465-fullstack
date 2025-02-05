@@ -42,4 +42,16 @@ export class TripListingComponent implements OnInit {
     console.log('ngOnInit');
     this.getStuff();
   }
+
+  public isLoggedIn(): boolean {
+    if (sessionStorage.getItem("isLoggedIn") == null){
+        sessionStorage.setItem("isLoggedIn", "false");
+        return false;
+    }
+    if (sessionStorage.getItem("isLoggedIn") == "false"){
+        return false;
+    }
+    return true;
+ }
+
 }
